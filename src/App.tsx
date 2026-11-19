@@ -181,7 +181,7 @@ export function App() {
         )}
       </header>
 
-      {/* Hero Section com a 5ª imagem enviada e visual mais iluminado/claro */}
+      {/* Hero Section */}
       <section
         id="inicio"
         className="relative min-h-[86vh] flex items-center overflow-hidden bg-slate-100"
@@ -317,7 +317,7 @@ export function App() {
 
               <div className="rounded-3xl overflow-hidden border-2 border-red-100 bg-slate-50 shadow-lg">
                 <img
-                  src="/WhatsApp Image 2026-11-19 at 18.30.50_2.jpeg"
+                  src="/tatame-gb.jpg"
                   alt="Praticante de Jiu-Jitsu com kimono Gracie Barra no tatame azul"
                   className="w-full h-64 object-cover"
                 />
