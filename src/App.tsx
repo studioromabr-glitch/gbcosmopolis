@@ -13,7 +13,9 @@ import {
   Clock,
   Trophy,
   Star,
+  RotateCw,
 } from 'lucide-react';
+import FlipCard from './FlipCard';
 
 type CavernaTab = 'trajetoria' | 'conquistas' | 'lideranca';
 
@@ -262,11 +264,11 @@ export function App() {
         </div>
       </section>
 
-      {/* Seção A Escola / Cultura */}
+      {/* Seção A Escola / Cultura com FlipCards */}
       <section id="escola" className="py-24 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
+            <div className="lg:col-span-5 space-y-6">
               <span className="text-xs font-extrabold tracking-widest uppercase text-blue-700 flex items-center gap-2">
                 <span className="w-8 h-[3px] bg-red-600 rounded-full" />
                 Cultura & Metodologia Gracie Barra
@@ -298,38 +300,114 @@ export function App() {
               </ul>
             </div>
 
-            <div className="lg:col-span-6 grid sm:grid-cols-2 gap-5">
-              <div className="rounded-3xl overflow-hidden border-2 border-blue-100 bg-slate-50 shadow-lg">
-                <img
-                  src="/Sem-Titulo-1-q5s0g52hexjimeuion54na4gvpx99lblht9stos5dc.jpg"
-                  alt="Kimono e escudo oficial Gracie Barra"
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-4 bg-white border-t border-slate-200">
-                  <span className="inline-block bg-red-600 text-white text-[11px] font-bold uppercase px-2.5 py-0.5 rounded">
-                    Identidade GB
-                  </span>
-                  <h3 className="text-base font-extrabold text-slate-900 mt-1.5">
-                    Tradição & Disciplina
-                  </h3>
-                </div>
-              </div>
+            <div className="lg:col-span-7 flex flex-col sm:flex-row items-center justify-center gap-6">
+              {/* FlipCard 1: Identidade & Irmandade */}
+              <FlipCard
+                width={310}
+                height={410}
+                radius={24}
+                ariaLabel="Cartão Identidade Gracie Barra — clique ou arraste para ver a mensagem"
+                front={
+                  <div className="relative w-full h-full">
+                    <img
+                      src="/Sem-Titulo-1-q5s0g52hexjimeuion54na4gvpx99lblht9stos5dc.jpg"
+                      alt="Kimono e escudo oficial Gracie Barra"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/25 to-transparent flex flex-col justify-between p-5">
+                      <span className="self-start inline-block bg-red-600 text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                        Identidade GB
+                      </span>
+                      <div>
+                        <p className="text-white font-black text-lg uppercase leading-snug">
+                          Tradição & Disciplina
+                        </p>
+                        <div className="mt-3 inline-flex items-center gap-2 bg-white/95 text-blue-950 px-3.5 py-2 rounded-xl text-xs font-extrabold shadow-md">
+                          <RotateCw className="w-3.5 h-3.5 text-red-600" />
+                          Clique ou arraste para ver mais
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+                back={
+                  <div className="w-full h-full bg-gradient-to-br from-blue-950 via-blue-900 to-red-700 text-white p-6 flex flex-col justify-between">
+                    <div>
+                      <span className="inline-block bg-white/15 border border-white/25 text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full">
+                        Filosofia Gracie Barra
+                      </span>
+                      <h3 className="text-2xl font-black uppercase mt-4 leading-tight">
+                        Irmandade que fortalece além do tatame
+                      </h3>
+                      <p className="mt-3 text-sm sm:text-base text-blue-50 leading-relaxed">
+                        Vestir o escudo da Gracie Barra é assumir o compromisso com o respeito, a
+                        humildade e o crescimento mútuo. Aqui ninguém evolui sozinho: cada treino é
+                        uma oportunidade de apoiar o próximo e construir caráter.
+                      </p>
+                    </div>
+                    <div className="pt-4 border-t border-white/20 flex items-center justify-between text-xs font-bold text-red-200">
+                      <span>GRACIE BARRA COSMÓPOLIS</span>
+                      <span className="inline-flex items-center gap-1 text-white">
+                        <RotateCw className="w-3.5 h-3.5" /> Virar
+                      </span>
+                    </div>
+                  </div>
+                }
+              />
 
-              <div className="rounded-3xl overflow-hidden border-2 border-red-100 bg-slate-50 shadow-lg">
-                <img
-                  src="/tatame-gb.jpeg"
-                  alt="Praticante de Jiu-Jitsu com kimono Gracie Barra no tatame azul"
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-4 bg-white border-t border-slate-200">
-                  <span className="inline-block bg-blue-700 text-white text-[11px] font-bold uppercase px-2.5 py-0.5 rounded">
-                    Tatame & Foco
-                  </span>
-                  <h3 className="text-base font-extrabold text-slate-900 mt-1.5">
-                    Gracie Barra Cosmópolis • SP
-                  </h3>
-                </div>
-              </div>
+              {/* FlipCard 2: Respeito & Superação no Tatame */}
+              <FlipCard
+                width={310}
+                height={410}
+                radius={24}
+                ariaLabel="Cartão Tatame e Foco Gracie Barra — clique ou arraste para ver a mensagem"
+                front={
+                  <div className="relative w-full h-full">
+                    <img
+                      src="/tatame-gb.jpeg"
+                      alt="Praticante de Jiu-Jitsu com kimono Gracie Barra no tatame azul"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent flex flex-col justify-between p-5">
+                      <span className="self-start inline-block bg-blue-700 text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                        Tatame & Foco
+                      </span>
+                      <div>
+                        <p className="text-white font-black text-lg uppercase leading-snug">
+                          Gracie Barra Cosmópolis • SP
+                        </p>
+                        <div className="mt-3 inline-flex items-center gap-2 bg-white/95 text-red-700 px-3.5 py-2 rounded-xl text-xs font-extrabold shadow-md">
+                          <RotateCw className="w-3.5 h-3.5 text-blue-700" />
+                          Clique ou arraste para ver mais
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+                back={
+                  <div className="w-full h-full bg-gradient-to-br from-red-700 via-red-600 to-blue-950 text-white p-6 flex flex-col justify-between">
+                    <div>
+                      <span className="inline-block bg-white/15 border border-white/25 text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full">
+                        Valores no Tatame
+                      </span>
+                      <h3 className="text-2xl font-black uppercase mt-4 leading-tight">
+                        Constância diária, mente calma e coração firme
+                      </h3>
+                      <p className="mt-3 text-sm sm:text-base text-red-50 leading-relaxed">
+                        No tatame, cada queda ensina a levantar com paciência e cada desafio
+                        desperta autocontrole. O verdadeiro propósito do Jiu-Jitsu é formar pessoas
+                        mais equilibradas, seguras e preparadas para a vida.
+                      </p>
+                    </div>
+                    <div className="pt-4 border-t border-white/20 flex items-center justify-between text-xs font-bold text-blue-100">
+                      <span>JIU-JITSU PARA TODOS</span>
+                      <span className="inline-flex items-center gap-1 text-white">
+                        <RotateCw className="w-3.5 h-3.5" /> Virar
+                      </span>
+                    </div>
+                  </div>
+                }
+              />
             </div>
           </div>
         </div>
