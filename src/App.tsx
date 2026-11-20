@@ -12,16 +12,13 @@ import {
   ChevronRight,
   Clock,
   Trophy,
-  Star,
   RotateCw,
 } from 'lucide-react';
+import { motion } from 'motion/react';
 import FlipCard from './FlipCard';
-
-type CavernaTab = 'trajetoria' | 'conquistas' | 'lideranca';
 
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<CavernaTab>('trajetoria');
 
   // Substitua pelo número oficial da academia no formato 5519999999999
   const whatsappNumber = '5519999999999';
@@ -38,57 +35,29 @@ export function App() {
     { label: 'Contato', href: '#contato' },
   ];
 
-  const cavernaTabs: {
-    id: CavernaTab;
-    label: string;
-    badge: string;
-    title: string;
-    description: string;
-    highlights: string[];
-  }[] = [
+  const cavernaBanners = [
     {
-      id: 'trajetoria',
-      label: 'Trajetória & Graduação',
-      badge: 'Faixa Preta 5º Grau',
-      title: 'Professor Anderson Caverna',
-      description:
-        'Líder da Gracie Barra Cosmópolis e Faixa Preta Quinto Grau, com trajetória consolidada no Jiu-Jitsu e na formação contínua de alunos, atletas e famílias dentro e fora do tatame.',
-      highlights: [
-        'Faixa Preta Quinto Grau com dedicação integral ao ensino',
-        'Referência técnica e disciplinar na Gracie Barra Cosmópolis',
-        'Acompanhamento próximo do iniciante ao atleta avançado',
-      ],
+      src: '/banner_mestre_caverna_16x9.jpg',
+      alt: 'Mestre Caverna — Experiência, disciplina e propósito dentro e fora do tatame. Gracie Barra Cosmópolis',
+      tag: '01 • Liderança & Propósito',
+      topClass: 'top-24',
+      cropClass: 'scale-100',
     },
     {
-      id: 'conquistas',
-      label: 'Honra ao Mérito & Equipe',
-      badge: 'Reconhecimento & Tatame',
-      title: 'Legado em Competições e Formação',
-      description:
-        'Presença constante em eventos e campeonatos, como a CompNet, representando a Gracie Barra Cosmópolis com espírito de equipe, respeito e evolução coletiva.',
-      highlights: [
-        'Certificação de Honra ao Mérito vinculada à Gracie Barra Cosmópolis',
-        'Presença ativa em tatames de competição e formação da equipe',
-        'Incentivo à superação, respeito às regras e espírito esportivo',
-      ],
+      src: '/banner_superior_gracie_barra_16x9.jpg',
+      alt: 'Vice Campeão da Liga Global da Gracie Barra — Invicto nas lutas deste ano',
+      tag: '02 • Conquistas no Tatame',
+      topClass: 'top-28',
+      cropClass: 'scale-125 sm:scale-125',
     },
     {
-      id: 'lideranca',
-      label: 'Liderança GB Cosmópolis',
-      badge: 'Adultos & GB Kids 5+',
-      title: 'Cultura Gracie Barra em Cosmópolis',
-      description:
-        'Sob a orientação do Professor Caverna, a unidade oferece um ambiente seguro e estruturado para crianças a partir de 5 anos e adultos que buscam defesa pessoal, saúde e comunidade.',
-      highlights: [
-        'Foco em defesa pessoal eficaz e metodologia oficial GB',
-        'Formação infantil (5+) com valores de disciplina e confiança',
-        'Comunidade acolhedora conectada ao Instagram @graciebarracosmopolis',
-      ],
+      src: '/banner_inferior_gracie_barra_16x9.jpg',
+      alt: 'O Jiu-Jitsu já fez muito por mim, meu trabalho é a forma de retribuir',
+      tag: '03 • Legado & Formação',
+      topClass: 'top-32',
+      cropClass: 'scale-125 sm:scale-125',
     },
   ];
-
-  const currentTab =
-    cavernaTabs.find((tab) => tab.id === activeTab) ?? cavernaTabs[0];
 
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-red-600 selection:text-white">
@@ -149,6 +118,7 @@ export function App() {
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
             onClick={() => setMenuOpen(!menuOpen)}
             className="lg:hidden p-2 text-slate-700 hover:text-red-600"
             aria-label="Abrir menu"
@@ -517,110 +487,54 @@ export function App() {
         </div>
       </section>
 
-      {/* Aba / Seção Portfólio do Caverna */}
+      {/* Seção Portfólio do Caverna — 3 Banners em Scroll Stack */}
       <section id="portfolio-caverna" className="py-24 bg-white border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-            <div>
-              <span className="text-xs font-extrabold tracking-widest uppercase text-blue-700 flex items-center gap-2">
-                <Trophy className="w-4 h-4 text-red-600" />
-                Portfólio Oficial
-              </span>
-              <h2 className="mt-2 text-3xl sm:text-5xl font-black text-slate-900 uppercase">
-                Portfólio do <span className="text-red-600">Caverna</span>
-              </h2>
-              <p className="mt-2 text-slate-600">
-                Professor Anderson Caverna • Faixa Preta Quinto Grau • Gracie Barra Cosmópolis
-              </p>
-            </div>
-
-            {/* Botões de abas */}
-            <div className="flex flex-wrap gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
-              {cavernaTabs.map((tab) => {
-                const isActive = tab.id === activeTab;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                      isActive
-                        ? 'bg-red-600 text-white shadow-sm'
-                        : 'text-slate-700 hover:text-blue-800 hover:bg-white'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-extrabold tracking-widest uppercase text-blue-700 inline-flex items-center gap-2">
+              <Trophy className="w-4 h-4 text-red-600" />
+              Portfólio Oficial
+            </span>
+            <h2 className="mt-2 text-3xl sm:text-5xl font-black text-slate-900 uppercase">
+              Portfólio do <span className="text-red-600">Caverna</span>
+            </h2>
+            <p className="mt-3 text-slate-600 text-base">
+              Role para acompanhar a trajetória, as conquistas e a filosofia do Mestre Caverna na
+              Gracie Barra Cosmópolis.
+            </p>
           </div>
 
-          {/* Conteúdo da aba selecionada */}
-          <div className="bg-slate-50 border-2 border-slate-200 rounded-3xl p-6 sm:p-10 lg:p-12 grid lg:grid-cols-12 gap-10 items-center shadow-sm">
-            <div className="lg:col-span-5">
-              <div className="relative rounded-2xl overflow-hidden border-2 border-blue-600/30 bg-white shadow-lg">
-                <img
-                  src="/gb-caverna.jpg"
-                  alt="Professor Anderson Caverna segurando certificado de Honra ao Mérito Gracie Barra Cosmópolis"
-                  className="w-full h-[420px] object-cover object-top"
-                />
-                <div className="bg-blue-950 text-white px-4 py-3 flex items-center justify-between text-xs font-bold uppercase tracking-wider">
-                  <span className="text-red-400">Prof. Anderson Caverna</span>
-                  <span className="bg-red-600 text-white px-2.5 py-1 rounded">
-                    Faixa Preta 5º Grau
-                  </span>
+          <div className="space-y-8">
+            {cavernaBanners.map((banner, index) => (
+              <motion.div
+                key={banner.src}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.45, delay: index * 0.06 }}
+                className={`sticky ${banner.topClass} rounded-3xl overflow-hidden border-2 border-blue-950/20 bg-slate-950 shadow-2xl`}
+              >
+                <div className="relative aspect-video w-full overflow-hidden bg-slate-950">
+                  <img
+                    src={banner.src}
+                    alt={banner.alt}
+                    className={`w-full h-full object-cover ${banner.cropClass}`}
+                  />
                 </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100 text-blue-900 text-xs font-extrabold uppercase tracking-wider">
-                <Star className="w-3.5 h-3.5 text-red-600" />
-                {currentTab.badge}
-              </div>
-
-              <h3 className="text-2xl sm:text-4xl font-black text-slate-900">
-                {currentTab.title}
-              </h3>
-
-              <p className="text-slate-700 text-base sm:text-lg leading-relaxed">
-                {currentTab.description}
-              </p>
-
-              <ul className="space-y-3 pt-2">
-                {currentTab.highlights.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-3.5 text-sm sm:text-base font-medium text-slate-800"
+                <div className="bg-blue-950 text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm font-bold border-t border-blue-900">
+                  <span className="text-red-400 uppercase tracking-wider">{banner.tag}</span>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded-lg text-xs font-extrabold transition-colors"
                   >
-                    <CheckCircle2 className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="pt-4 flex flex-wrap items-center gap-4">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3.5 rounded-xl text-sm transition-all shadow-md shadow-red-600/20"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Falar com a Equipe no WhatsApp
-                </a>
-                <a
-                  href="https://www.instagram.com/graciebarracosmopolis/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 font-bold px-5 py-3.5 rounded-xl text-sm transition-all"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  @graciebarracosmopolis
-                </a>
-              </div>
-            </div>
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    Agendar Aula Experimental
+                  </a>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
