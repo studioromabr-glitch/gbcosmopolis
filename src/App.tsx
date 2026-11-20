@@ -183,7 +183,7 @@ export function App() {
         )}
       </header>
 
-      {/* Hero Section */}
+      {/* Hero Section com nova imagem de fundo e transparência atual */}
       <section
         id="inicio"
         className="relative min-h-[86vh] flex items-center overflow-hidden bg-slate-100"
@@ -191,8 +191,7 @@ export function App() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage:
-              "url('/Sem-Titulo-1-q5s0g52hexjimeuion54na4gvpx99lblht9stos5dc.jpg')",
+            backgroundImage: "url('/Hero-GB-Maringa-4K-1024x679.webp')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-blue-950/35" />
