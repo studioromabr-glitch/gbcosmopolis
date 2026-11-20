@@ -37,21 +37,21 @@ export function App() {
 
   const cavernaBanners = [
     {
-      src: '/banner_mestre_caverna_16x9.jpg',
+      src: '/banner_mestre_caverna_16x9.png',
       alt: 'Mestre Caverna — Experiência, disciplina e propósito dentro e fora do tatame. Gracie Barra Cosmópolis',
       tag: '01 • Liderança & Propósito',
       topClass: 'top-24',
       cropClass: 'scale-100',
     },
     {
-      src: '/banner_superior_gracie_barra_16x9.jpg',
+      src: '/banner_superior_gracie_barra_16x9.png',
       alt: 'Vice Campeão da Liga Global da Gracie Barra — Invicto nas lutas deste ano',
       tag: '02 • Conquistas no Tatame',
       topClass: 'top-28',
       cropClass: 'scale-125 sm:scale-125',
     },
     {
-      src: '/banner_inferior_gracie_barra_16x9.jpg',
+      src: '/banner_inferior_gracie_barra_16x9.png',
       alt: 'O Jiu-Jitsu já fez muito por mim, meu trabalho é a forma de retribuir',
       tag: '03 • Legado & Formação',
       topClass: 'top-32',
