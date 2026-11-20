@@ -317,7 +317,7 @@ export function App() {
 
               <div className="rounded-3xl overflow-hidden border-2 border-red-100 bg-slate-50 shadow-lg">
                 <img
-                  src="/tatame-gb.jpg"
+                  src="/tatame-gb.jpeg"
                   alt="Praticante de Jiu-Jitsu com kimono Gracie Barra no tatame azul"
                   className="w-full h-64 object-cover"
                 />
